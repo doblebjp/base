@@ -26,7 +26,10 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
 # curl
 apt-get install -y curl
 
+# application setup from here, change to application directory
+cd /vagrant
+
 # composer
 curl -s https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
-(cd /vagrant && composer install)
+composer install
