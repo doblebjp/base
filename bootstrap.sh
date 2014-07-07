@@ -16,9 +16,10 @@ apt-get install -y apache2
 
 # php
 apt-get install -y php5 php-apc php5-mysql php5-json php5-intl php5-xdebug
-echo "date.timezone = $SERVER_TIMEZONE" > /etc/php5/mods-available/timezone.ini
-(cd /etc/php5/cli/conf.d && [ ! -h "01-timezone.ini" ] && ln -s ../../mods-available/timezone.ini 01-timezone.ini) 
-(cd /etc/php5/apache2/conf.d && [ ! -h "01-timezone.ini" ] && ln -s ../../mods-available/timezone.ini 01-timezone.ini) 
+echo "date.timezone = $SERVER_TIMEZONE" > /etc/php5/mods-available/vagrant.ini
+echo "xdebug.max_nesting_level = 250" >> /etc/php5/mods-available/vagrant.ini
+(cd /etc/php5/cli/conf.d && ln -sf ../../mods-available/vagrant.ini 99-vagrant.ini) 
+(cd /etc/php5/apache2/conf.d && ln -sf ../../mods-available/vagrant.ini 99-vagrant.ini) 
 
 # mysql
 DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server
